@@ -6,7 +6,7 @@ namespace BEcoder
 	{
 		private static void Main(String[] args)
 		{
-			Console.WriteLine("Hello World!");
+			Solution.Solve(Console.In, Console.Out);
 		}
 	}
 }
