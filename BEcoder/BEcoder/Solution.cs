@@ -19,7 +19,7 @@ namespace BEcoder
 			{
 				// ReSharper disable once PossibleNullReferenceException
 				var rootFriendLine = input.ReadLine()
-					.Split(' ')
+					.Split(' ', StringSplitOptions.RemoveEmptyEntries)
 					.Select(Int32.Parse)
 					.ToArray();
 
