@@ -7,7 +7,6 @@ namespace BEcoder
 		private static void Main(String[] args)
 		{
 			Solution.Solve(Console.In, Console.Out);
-			Console.ReadKey();
 		}
 	}
 }
