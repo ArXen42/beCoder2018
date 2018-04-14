@@ -13,7 +13,7 @@ namespace BEcoder.Tests
 		{
 			public IEnumerator<Object[]> GetEnumerator()
 			{
-				yield return new Object[]
+				Object[] GetDefaultTestData() => new Object[]
 				{
 					new[]
 					{
@@ -25,36 +25,31 @@ namespace BEcoder.Tests
 					},
 					new[] {"6"}
 				};
-			}
 
-			IEnumerator IEnumerable.GetEnumerator()
-			{
-				return GetEnumerator();
-			}
-		}
-
-		private class WorstTestData : IEnumerable<Object[]>
-		{
-			public IEnumerator<Object[]> GetEnumerator()
-			{
-				String[] values = new String[101];
-				Int32 initial = 100;
-				values[0] = "100";
-				for (Int32 i = 0; i < 100; i++)
+				Object[] GetGeneratedTestData()
 				{
-					StringBuilder sb = new StringBuilder().Append($"{i} 99 ");
-					for (Int32 j = 0; j < 99; j++)
+					String[] values = new String[101];
+					Int32 initial = 100;
+					values[0] = "100";
+					for (Int32 i = 0; i < 100; i++)
 					{
-						++initial;
-						sb.Append($"{initial} ");
+						StringBuilder sb = new StringBuilder().Append($"{i} 99 ");
+						for (Int32 j = 0; j < 99; j++)
+						{
+							++initial;
+							sb.Append($"{initial} ");
+						}
+						values[i + 1] = sb.ToString();
 					}
-					values[i + 1] = sb.ToString();
+					return new Object[]
+					{
+						values,
+						new[] {"9900"}
+					};
 				}
-				yield return new Object[]
-				{
-					values,
-					new[] {"9900"}
-				};
+
+				yield return GetDefaultTestData();
+				yield return GetGeneratedTestData();
 			}
 
 			IEnumerator IEnumerable.GetEnumerator()
@@ -65,7 +60,6 @@ namespace BEcoder.Tests
 
 		[Theory]
 		[ClassData(typeof(TestData))]
-		[ClassData(typeof(WorstTestData))]
 		public void SolutionTest(String[] inputStrings, String[] expectedOutput)
 		{
 			using (var inStream = new MemoryStream())
