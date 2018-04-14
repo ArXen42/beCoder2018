@@ -26,7 +26,10 @@ namespace BEcoder.Tests
 				};
 			}
 
-			IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+			IEnumerator IEnumerable.GetEnumerator()
+			{
+				return GetEnumerator();
+			}
 		}
 
 		[Theory]

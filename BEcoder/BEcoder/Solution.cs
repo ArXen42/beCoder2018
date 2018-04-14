@@ -14,7 +14,7 @@ namespace BEcoder
 
 			HashSet<Int32> rootFriends = new HashSet<Int32>();
 			HashSet<Int32> friends = new HashSet<Int32>();
-			
+
 			for (Int32 i = 0; i < rootFriendsCount; i++)
 			{
 				// ReSharper disable once PossibleNullReferenceException
@@ -30,9 +30,8 @@ namespace BEcoder
 				for (Int32 f = 0; f < friendsCount; f++)
 					friends.Add(rootFriendLine[f + 2]);
 			}
-			
+
 			friends.ExceptWith(rootFriends);
-			
 			output.WriteLine(friends.Count);
 		}
 	}
